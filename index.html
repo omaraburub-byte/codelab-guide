@@ -85,7 +85,7 @@ kbd,code{font:13px var(--mono);background:var(--soft);border:1px solid var(--lin
 .bulb rect{transition:fill .25s}
 .bulb .ray{opacity:0;transition:opacity .3s}
 .photo{width:240px;height:240px;border-radius:50%;overflow:hidden;background:var(--soft);border:1px solid var(--line);margin:0 auto;
-  display:grid;place-items:center;filter:grayscale(1) contrast(1.05);transition:filter 1.2s ease .6s}
+  display:grid;place-items:center;filter:contrast(.9) brightness(1.08);transition:filter 1.2s ease .6s}
 .photo img{width:100%;height:100%;object-fit:cover}
 .photo .ph{font:600 56px var(--sans);color:var(--faint)}
 .finish h2{font-size:34px;letter-spacing:-.02em;font-weight:600;margin:28px 0 8px}
@@ -95,7 +95,7 @@ kbd,code{font:13px var(--mono);background:var(--soft);border:1px solid var(--lin
 .lit .bulb .hi{fill:#fff7cf}
 .lit .bulb .fil{fill:#ff9f1c}
 .lit .bulb .ray{opacity:1}
-.lit .photo{filter:none}
+.lit .photo{filter:contrast(1.05)}
 .lit .bulb{animation:flicker .9s steps(1,end) 1}
 @keyframes flicker{0%{opacity:1}12%{opacity:.25}22%{opacity:1}34%{opacity:.4}46%{opacity:1}100%{opacity:1}}
 
