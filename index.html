@@ -56,7 +56,20 @@ img{max-width:100%;display:block}
 main{min-width:0;padding-bottom:40px}
 
 /* ---------- hero ---------- */
-.hero{padding:96px 0 40px}
+.hero{padding:64px 0 40px}
+/* logo with looping pixel ring */
+.mark-wrap{position:relative;width:132px;height:132px;margin:0 0 26px -14px}
+.mark-wrap img{position:absolute;left:50%;top:50%;width:78px;height:78px;transform:translate(-50%,-50%);border-radius:50%;
+  box-shadow:0 0 0 1px var(--line),0 10px 30px -12px rgba(0,0,0,.25);animation:bob 4s ease-in-out infinite}
+.px{position:absolute;width:5px;height:5px;background:var(--fg);opacity:.12;animation:chase 1.8s steps(1,end) infinite}
+.spark{position:absolute;width:15px;height:15px;opacity:0;animation:twinkle 3.2s steps(4,end) infinite}
+.spark i{position:absolute;width:5px;height:5px;background:var(--fg)}
+.spark i:nth-child(1){left:5px;top:0}.spark i:nth-child(2){left:0;top:5px}.spark i:nth-child(3){left:5px;top:5px}
+.spark i:nth-child(4){left:10px;top:5px}.spark i:nth-child(5){left:5px;top:10px}
+@keyframes chase{0%{opacity:1}12%{opacity:.55}24%{opacity:.25}36%,100%{opacity:.12}}
+@keyframes twinkle{0%,55%,100%{opacity:0;transform:scale(.6)}65%{opacity:.9;transform:scale(1)}80%{opacity:.4;transform:scale(.8)}}
+@keyframes bob{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,calc(-50% - 3px))}}
+@media (prefers-reduced-motion:reduce){.px{opacity:.35}.spark{opacity:.5}}
 .eyebrow{font:12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 h1{font-size:48px;line-height:1.08;letter-spacing:-.025em;font-weight:600;margin:14px 0 16px}
 .lead{font-size:18px;color:var(--muted);max-width:560px;margin:0}
@@ -151,6 +164,10 @@ footer a:hover{border-color:var(--fg)}
 
   <main>
     <section class="hero">
+      <div class="mark-wrap" aria-hidden="true">
+        <span class="px" style="left:65px;top:10px;animation-delay:0.000s"></span><span class="px" style="left:85px;top:10px;animation-delay:0.113s"></span><span class="px" style="left:105px;top:25px;animation-delay:0.225s"></span><span class="px" style="left:115px;top:40px;animation-delay:0.338s"></span><span class="px" style="left:120px;top:65px;animation-delay:0.450s"></span><span class="px" style="left:115px;top:85px;animation-delay:0.562s"></span><span class="px" style="left:105px;top:105px;animation-delay:0.675s"></span><span class="px" style="left:85px;top:115px;animation-delay:0.787s"></span><span class="px" style="left:65px;top:120px;animation-delay:0.900s"></span><span class="px" style="left:40px;top:115px;animation-delay:1.012s"></span><span class="px" style="left:25px;top:105px;animation-delay:1.125s"></span><span class="px" style="left:10px;top:85px;animation-delay:1.238s"></span><span class="px" style="left:10px;top:65px;animation-delay:1.350s"></span><span class="px" style="left:10px;top:40px;animation-delay:1.463s"></span><span class="px" style="left:25px;top:25px;animation-delay:1.575s"></span><span class="px" style="left:40px;top:10px;animation-delay:1.688s"></span><span class="spark" style="left:2px;top:4px;animation-delay:0s"><i></i><i></i><i></i><i></i><i></i></span><span class="spark" style="left:112px;top:10px;animation-delay:.8s"><i></i><i></i><i></i><i></i><i></i></span><span class="spark" style="left:6px;top:110px;animation-delay:1.6s"><i></i><i></i><i></i><i></i><i></i></span><span class="spark" style="left:114px;top:112px;animation-delay:2.4s"><i></i><i></i><i></i><i></i><i></i></span>
+        <img src="logo.png" alt="">
+      </div>
       <div class="eyebrow">CodeLab guide</div>
       <h1>Get a free Gemini API&nbsp;key</h1>
       <p class="lead">CodeLab explains your code with your own AI key. Here is how to get one from Google for free and connect it in Visual Studio.</p>
