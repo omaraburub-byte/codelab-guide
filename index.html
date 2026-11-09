@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Gemini API Key</title>
+<meta name="description" content="Get a free Gemini API key in five short steps and connect it to CodeLab for Visual Studio. A guide by Dr. Omar Aburub.">
+<meta name="author" content="Dr. Omar Aburub">
+<link rel="icon" href="logo.png">
+<style>
+:root{
+  --fg:#0d0d0d; --muted:#6b6b6b; --faint:#a3a3a3; --line:#e6e6e6; --soft:#f6f6f6; --bg:#ffffff;
+  --done:#1e8e3e; --done-soft:#e6f4ea;
+  --sans:'Segoe UI Variable Text','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --mono:'Cascadia Mono','Cascadia Code',Consolas,ui-monospace,'SF Mono',Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:14px 24px;background:rgba(255,255,255,.88);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;text-decoration:none}
+.brand img{width:22px;height:22px}
+.top nav{display:flex;gap:20px;font-size:13.5px;color:var(--muted)}
+.top nav a{text-decoration:none}
+.top nav a:hover{color:var(--fg)}
+.mbar{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:transparent;display:none}
+.mbar i{display:block;height:100%;width:0;background:var(--done);transition:width .35s ease}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:200px 1fr;gap:56px}
+.rail{position:sticky;top:120px;align-self:start;padding-top:96px}
+.rail ol{list-style:none;margin:0;padding:0;position:relative}
+.track,.fill{position:absolute;left:15px;top:16px;width:2px;border-radius:2px}
+.track{bottom:16px;background:var(--line)}
+.fill{height:0;background:var(--done);transition:height .45s cubic-bezier(.2,.7,.2,1)}
+.rail li{position:relative;margin:0 0 26px}
+.rail li:last-child{margin-bottom:0}
+.rail a{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--faint);font-size:13.5px;transition:color .25s}
+.dot{position:relative;z-index:1;flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  font:600 13px var(--mono);background:var(--bg);border:1.5px solid var(--line);color:var(--faint);
+  transition:background .3s,border-color .3s,color .3s,transform .3s}
+.dot svg{width:15px;height:15px}
+.dot .ok{display:none}
+.rail li.current a{color:var(--fg)}
+.rail li.current .dot{border-color:var(--fg);color:var(--fg);transform:scale(1.06)}
+.rail li.done a{color:var(--fg)}
+.rail li.done .dot{background:var(--done);border-color:var(--done);color:#fff}
+.rail li.done .dot .n{display:none}
+.rail li.done .dot .ok{display:block}
+
+main{min-width:0;padding-bottom:40px}
+
+/* ---------- hero ---------- */
+.hero{padding:96px 0 40px}
+.eyebrow{font:12px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:48px;line-height:1.08;letter-spacing:-.025em;font-weight:600;margin:14px 0 16px}
+.lead{font-size:18px;color:var(--muted);max-width:560px;margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:28px;font-size:13.5px;color:var(--muted)}
+.facts span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--fg);margin-right:9px;vertical-align:2px}
+
+/* ---------- steps ---------- */
+.step{padding:72px 0 8px;border-top:1px solid var(--line);margin-top:48px;scroll-margin-top:80px}
+.step h2{font-size:28px;line-height:1.2;letter-spacing:-.015em;font-weight:600;margin:8px 0 10px}
+.step p{margin:0 0 14px;max-width:600px}
+.step p.small{font-size:14px;color:var(--muted)}
+kbd,code{font:13px var(--mono);background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.btnlabel{font-weight:600;white-space:nowrap}
+.shot{position:relative;margin:26px 0 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--soft);
+  box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 40px -12px rgba(0,0,0,.18)}
+.shot img{width:100%;height:auto}
+.mark{position:absolute;border:2px solid var(--fg);border-radius:9px;box-shadow:0 0 0 4px rgba(13,13,13,.10);pointer-events:none;
+  opacity:0;transform:scale(1.25);transition:opacity .4s ease .15s,transform .5s cubic-bezier(.2,.8,.2,1) .15s}
+.step.seen .mark{opacity:1;transform:scale(1)}
+.callout{margin-top:18px;padding:12px 16px;border-left:2px solid var(--fg);background:var(--soft);border-radius:0 10px 10px 0;font-size:14px;color:#333;max-width:600px}
+
+/* ---------- finish ---------- */
+.finish{padding:56px 0 24px;border-top:1px solid var(--line);margin-top:56px;text-align:center;scroll-margin-top:80px}
+.me{position:relative;width:240px;margin:0 auto;padding-top:104px}
+.bulb{position:absolute;left:50%;top:0;width:84px;transform:translateX(-50%);image-rendering:pixelated;transition:filter .3s}
+.bulb rect{transition:fill .25s}
+.bulb .ray{opacity:0;transition:opacity .3s}
+.photo{width:240px;height:240px;border-radius:50%;overflow:hidden;background:var(--soft);border:1px solid var(--line);margin:0 auto;
+  display:grid;place-items:center;filter:grayscale(1) contrast(1.05);transition:filter 1.2s ease .6s}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo .ph{font:600 56px var(--sans);color:var(--faint)}
+.finish h2{font-size:34px;letter-spacing:-.02em;font-weight:600;margin:28px 0 8px}
+.finish p{color:var(--muted);margin:0 auto 6px;max-width:460px}
+.lit .bulb{filter:drop-shadow(0 0 10px rgba(255,214,64,.85)) drop-shadow(0 0 28px rgba(255,190,40,.45))}
+.lit .bulb .glass{fill:#ffd84d}
+.lit .bulb .hi{fill:#fff7cf}
+.lit .bulb .fil{fill:#ff9f1c}
+.lit .bulb .ray{opacity:1}
+.lit .photo{filter:none}
+.lit .bulb{animation:flicker .9s steps(1,end) 1}
+@keyframes flicker{0%{opacity:1}12%{opacity:.25}22%{opacity:1}34%{opacity:.4}46%{opacity:1}100%{opacity:1}}
+
+footer{border-top:1px solid var(--line);margin-top:40px;padding:24px 0 40px;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line)}
+footer a:hover{border-color:var(--fg)}
+
+@media (max-width:860px){
+  .wrap{grid-template-columns:1fr;gap:0}
+  .rail{display:none}
+  .mbar{display:block}
+  .top nav{display:none}
+  h1{font-size:36px}
+  .hero{padding-top:56px}
+  .step h2{font-size:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#top"><img src="logo.png" alt="">CodeLab</a>
+  <nav>
+    <a href="#finish">Done</a>
+    <a href="https://omarquest.vercel.app/" target="_blank" rel="noopener">Ask Omar's AI assistants</a>
+  </nav>
+  <div class="mbar"><i id="mbar"></i></div>
+</header>
+
+<div class="wrap" id="top">
+  <aside class="rail" aria-label="Progress">
+    <ol>
+      <span class="track"></span><span class="fill" id="fill"></span>
+      <li><a href="#s1"><span class="dot"><span class="n">1</span><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>Open AI Studio</a></li>
+      <li><a href="#s2"><span class="dot"><span class="n">2</span><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>Create API key</a></li>
+      <li><a href="#s3"><span class="dot"><span class="n">3</span><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>Confirm</a></li>
+      <li><a href="#s4"><span class="dot"><span class="n">4</span><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>Copy the key</a></li>
+      <li><a href="#s5"><span class="dot"><span class="n">5</span><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>Paste in CodeLab</a></li>
+      <li><a href="#finish"><span class="dot"><svg class="n" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13h4M6.5 11h3c0-1.6 2.5-2.6 2.5-5A4 4 0 0 0 4 6c0 2.4 2.5 3.4 2.5 5Z"/></svg><svg class="ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg></span>You're ready</a></li>
+    </ol>
+  </aside>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">CodeLab guide</div>
+      <h1>Get a free Gemini API&nbsp;key</h1>
+      <p class="lead">CodeLab explains your code with your own AI key. Here is how to get one from Google for free and connect it in Visual Studio.</p>
+      <div class="facts"><span>About 2 minutes</span><span>Free, no credit card</span><span>Just a Google account</span></div>
+    </section>
+
+    <section class="step" id="s1" data-step>
+      <div class="eyebrow">Step 1</div>
+      <h2>Open Google AI Studio</h2>
+      <p>Go to <a href="https://aistudio.google.com" target="_blank" rel="noopener"><code>aistudio.google.com</code></a> and sign in with your Google account if it asks. Then click the <span class="btnlabel">key icon</span> at the bottom left.</p>
+      <p class="small">Shortcut: open <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener"><code>aistudio.google.com/apikey</code></a> directly. The first time, Google may ask you to accept its terms.</p>
+      <figure class="shot">
+        <img src="img/step1.png" width="1150" height="762" alt="Google AI Studio home page, with the key icon at the bottom left of the sidebar" loading="lazy">
+        <span class="mark" style="left:14.6%;top:86.6%;width:3.5%;height:5.3%"></span>
+      </figure>
+    </section>
+
+    <section class="step" id="s2" data-step>
+      <div class="eyebrow">Step 2</div>
+      <h2>Click <span class="btnlabel">Create API key</span></h2>
+      <p>You are now on the <span class="btnlabel">API Keys</span> page. The button is at the top right.</p>
+      <figure class="shot">
+        <img src="img/step2.png" width="1150" height="762" alt="API Keys page with the Create API key button at the top right" loading="lazy">
+        <span class="mark" style="left:81.2%;top:5.9%;width:13.0%;height:5.0%"></span>
+      </figure>
+    </section>
+
+    <section class="step" id="s3" data-step>
+      <div class="eyebrow">Step 3</div>
+      <h2>Keep the defaults and click <span class="btnlabel">Create key</span></h2>
+      <p>The name and project are already filled in. You don't need to change anything.</p>
+      <figure class="shot">
+        <img src="img/step3.png" width="1150" height="762" alt="The Create a new key dialog with the Create key button" loading="lazy">
+        <span class="mark" style="left:61.6%;top:60.2%;width:8.8%;height:4.8%"></span>
+      </figure>
+    </section>
+
+    <section class="step" id="s4" data-step>
+      <div class="eyebrow">Step 4</div>
+      <h2>Click <span class="btnlabel">Copy key</span></h2>
+      <p>Your key is now on the clipboard.</p>
+      <figure class="shot">
+        <img src="img/step4.png" width="1150" height="762" alt="API key details with the key hidden and the Copy key button" loading="lazy">
+        <span class="mark" style="left:62.4%;top:75.8%;width:8.0%;height:4.8%"></span>
+      </figure>
+      <div class="callout">Treat the key like a password. Don't post it online or share it. If it leaks, delete it on the same page and create a new one.</div>
+    </section>
+
+    <section class="step" id="s5" data-step>
+      <div class="eyebrow">Step 5</div>
+      <h2>Paste it into CodeLab</h2>
+      <p>In Visual Studio open <span class="btnlabel">View › Other Windows › CodeLab</span>, then the <span class="btnlabel">settings</span> icon. Make sure <span class="btnlabel">Gemini</span> is selected, paste the key and click <span class="btnlabel">Save</span>.</p>
+      <p class="small">CodeLab tests the key right away and shows <b>Key works</b>. The key is stored in Windows Credential Manager on your PC only.</p>
+      <div class="callout">The free tier has a daily limit. If CodeLab ever shows error <code>429</code>, wait a little or switch to a lighter model in settings. On the free tier, Google may use prompts to improve its products.</div>
+    </section>
+
+    <section class="finish" id="finish" data-step>
+      <div class="me" id="me">
+        <svg class="bulb" id="bulb" viewBox="-3 -3 16 20" shape-rendering="crispEdges" aria-hidden="true"></svg>
+        <div class="photo">
+          <img src="omarpw.png" alt="Dr. Omar Aburub" onerror="this.remove();document.getElementById('ph').hidden=false">
+          <span class="ph" id="ph" hidden>OA</span>
+        </div>
+      </div>
+      <h2>You're ready.</h2>
+      <p>Save a file in Visual Studio and watch your first lesson appear.</p>
+      <p>Made with care by <a href="https://omarquest.vercel.app/" target="_blank" rel="noopener">Dr. Omar Aburub</a>.</p>
+    </section>
+
+    <footer>
+      <span>CodeLab for Visual Studio</span>
+      <span>Questions or feedback? <a href="https://omarquest.vercel.app/" target="_blank" rel="noopener">Ask Omar's AI assistants</a> or <a href="https://omarquest.vercel.app/" target="_blank" rel="noopener">contact Dr. Omar Aburub</a></span>
+    </footer>
+  </main>
+</div>
+
+<script>
+(() => {
+  // ---------- pixel bulb (10 x 14 pixels, drawn as SVG rects) ----------
+  const map = [
+    "..XXXXXX..",
+    ".XGGGGGGX.",
+    "XGHHGGGGGX",
+    "XGHGGGGGGX",
+    "XGGGGGGGGX",
+    "XGGGGGGGGX",
+    ".XGGFFGGX.",
+    "..XGFFGX..",
+    "..XGGGGX..",
+    "...XXXX...",
+    "...BBBB...",
+    "...bbbb...",
+    "...BBBB...",
+    "....bb....",
+  ];
+  const fills = { X:["#0d0d0d",""], G:["#ececec","glass"], H:["#ffffff","hi"], F:["#9a9a9a","fil"], B:["#5c5c5c",""], b:["#8a8a8a",""] };
+  const rays = [[-2,4],[-3,4],[11,4],[12,4],[0,-1],[-1,-2],[9,-1],[10,-2],[4.5,-2],[4.5,-3]];
+  const svg = document.getElementById("bulb"), NS = "http://www.w3.org/2000/svg";
+  const px = (x, y, fill, cls) => { const r = document.createElementNS(NS, "rect");
+    r.setAttribute("x", x); r.setAttribute("y", y); r.setAttribute("width", 1); r.setAttribute("height", 1);
+    r.setAttribute("fill", fill); if (cls) r.setAttribute("class", cls); svg.appendChild(r); };
+  rays.forEach(([x, y]) => px(x, y, "#ffd84d", "ray"));
+  map.forEach((row, y) => [...row].forEach((c, x) => { if (fills[c]) px(x, y, fills[c][0], fills[c][1]); }));
+
+  // ---------- progress ----------
+  const sections = [...document.querySelectorAll("[data-step]")];
+  const items = [...document.querySelectorAll(".rail li")];
+  const fill = document.getElementById("fill"), mbar = document.getElementById("mbar"), me = document.getElementById("me");
+  const last = sections.length - 1;
+  let lit = false;
+
+  function update() {
+    const line = innerHeight * 0.5;
+    let active = -1;
+    sections.forEach((s, i) => { if (s.getBoundingClientRect().top < line) active = i; });
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) active = last;
+    const finished = active === last;
+
+    items.forEach((li, i) => {
+      li.classList.toggle("done", i < active || finished);
+      li.classList.toggle("current", i === active && !finished);
+    });
+    sections.forEach((s, i) => { if (i <= active) s.classList.add("seen"); });
+
+    const first = items[0].querySelector(".dot").getBoundingClientRect();
+    const target = items[Math.max(0, finished ? last : active)].querySelector(".dot").getBoundingClientRect();
+    fill.style.height = active <= 0 && !finished ? "0px" : (target.top - first.top) + "px";
+    mbar.style.width = (finished ? 100 : Math.max(0, active) / last * 100) + "%";
+
+    if (finished && !lit) { lit = true; setTimeout(() => me.parentElement.classList.add("lit"), 250); }
+  }
+  addEventListener("scroll", update, { passive: true });
+  addEventListener("resize", update);
+  update();
+})();
+</script>
+</body>
+</html>
