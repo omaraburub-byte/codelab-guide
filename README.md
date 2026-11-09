@@ -5,5 +5,7 @@ A short step-by-step page that shows how to get a free Gemini API key and connec
 
 Live page: https://omaraburub-byte.github.io/codelab-guide/
 
+Install CodeLab: [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=OmarAburub.CodeLab)
+
 Designed and developed by [Dr. Omar Aburub](https://omarquest.vercel.app/).
 Questions or feedback? [Ask Omar's AI assistants](https://omarquest.vercel.app/).
